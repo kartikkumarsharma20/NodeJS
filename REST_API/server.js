@@ -5,9 +5,14 @@ const connectDB = require("./config/db");
 const studentRoutes = require("./routes/studentRoutes");
 const app = express();
 connectDB();
+/* ###ejs###
+app.set('views','./views')
+app.set('view engine','ejs')
 
-
-
+app.get('/',(req,res)=>{
+  res.render('home',{username:"john"})
+})
+*/
 
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
