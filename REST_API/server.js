@@ -13,17 +13,30 @@ app.get('/',(req,res)=>{
   res.render('home',{username:"john"})
 })
 */
-
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World");
+// });
 
 //mounting routes
 app.use('/student', studentRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-})
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/html/index.html");
+});
+
+
+app.post("/register", (req, res) => {
+     let { username, email, password } = req.body;
+    console.log(username, email, password)
+    res.send("form submitted successfully")
+
+});
+
+app.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
+});
